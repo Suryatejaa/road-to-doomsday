@@ -142,3 +142,240 @@
     color: var(--color-foreground);
   }
 }
+
+/* =========================================================
+   Marvel Timeline Guide — cinematic animation system
+   ========================================================= */
+
+@theme inline {
+  --color-tva: var(--tva);
+  --color-tva-glow: var(--tva-glow);
+  --color-cat-mcu: var(--cat-mcu);
+  --color-cat-street: var(--cat-street);
+  --color-cat-multiverse: var(--cat-multiverse);
+  --color-cat-fox: var(--cat-fox);
+  --color-cat-legacy: var(--cat-legacy);
+  --color-cat-sony: var(--cat-sony);
+  --color-cat-cosmic: var(--cat-cosmic);
+  --color-cat-animation: var(--cat-animation);
+  --color-cat-frontline: var(--cat-frontline);
+}
+
+:root {
+  --tva: oklch(0.75 0.18 70);
+  --tva-glow: oklch(0.82 0.22 75);
+  --cat-mcu: oklch(0.78 0.16 85);
+  --cat-street: oklch(0.58 0.22 30);
+  --cat-multiverse: oklch(0.65 0.24 300);
+  --cat-fox: oklch(0.62 0.18 145);
+  --cat-legacy: oklch(0.65 0.15 250);
+  --cat-sony: oklch(0.7 0.18 260);
+  --cat-cosmic: oklch(0.55 0.16 250);
+  --cat-animation: oklch(0.7 0.2 200);
+  --cat-frontline: oklch(0.68 0.19 50);
+}
+
+.dark {
+  --tva: oklch(0.78 0.2 70);
+  --tva-glow: oklch(0.85 0.24 75);
+  --cat-mcu: oklch(0.8 0.18 85);
+  --cat-street: oklch(0.65 0.24 30);
+  --cat-multiverse: oklch(0.7 0.26 300);
+  --cat-fox: oklch(0.68 0.2 145);
+  --cat-legacy: oklch(0.72 0.17 250);
+  --cat-sony: oklch(0.75 0.2 260);
+  --cat-cosmic: oklch(0.6 0.18 250);
+  --cat-animation: oklch(0.75 0.22 200);
+  --cat-frontline: oklch(0.75 0.21 50);
+}
+
+@keyframes hero-flash {
+  0%, 20%, 100% {
+    opacity: 0;
+    transform: rotateY(90deg) scale(1.1);
+  }
+  10% {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+  }
+}
+
+@keyframes hero-settle {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(1.25rem);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes line-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 6px var(--tva));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 14px var(--tva-glow));
+  }
+}
+
+@keyframes branch-glitch {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  20% {
+    transform: scaleX(1.1);
+    opacity: 1;
+  }
+  40% {
+    transform: scaleX(0.9);
+    opacity: 1;
+  }
+  60% {
+    transform: scaleX(1.05);
+    opacity: 1;
+  }
+  80% {
+    transform: scaleX(0.95);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes panel-enter {
+  0% {
+    opacity: 0;
+    transform: perspective(800px) rotateX(18deg) translateY(2.5rem) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(800px) rotateX(0deg) translateY(0) scale(1);
+  }
+}
+
+@keyframes locate-target {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 transparent;
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px color-mix(in oklab, var(--tva) 70%, transparent);
+  }
+}
+
+@keyframes glitch-rgb {
+  0% {
+    text-shadow: -2px 0 oklch(0.7 0.2 0), 2px 0 oklch(0.7 0.2 120);
+    transform: translate(0);
+  }
+  25% {
+    text-shadow: 2px 0 oklch(0.7 0.2 0), -2px 0 oklch(0.7 0.2 240);
+    transform: translate(-2px, 1px);
+  }
+  50% {
+    text-shadow: -1px 0 oklch(0.7 0.2 120), 1px 0 oklch(0.7 0.2 300);
+    transform: translate(2px, -1px);
+  }
+  75% {
+    text-shadow: 1px 0 oklch(0.7 0.2 0), -1px 0 oklch(0.7 0.2 180);
+    transform: translate(-1px, 2px);
+  }
+  100% {
+    text-shadow: -2px 0 oklch(0.7 0.2 0), 2px 0 oklch(0.7 0.2 120);
+    transform: translate(0);
+  }
+}
+
+@keyframes portal-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.hero-frame {
+  animation: hero-flash 1.5s ease-in-out forwards;
+  backface-visibility: hidden;
+}
+
+.hero-title {
+  animation: hero-settle 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) 1.4s forwards;
+  opacity: 0;
+}
+
+.timeline-line {
+  will-change: transform;
+  transform-origin: top;
+  animation: line-pulse 2s ease-in-out infinite;
+}
+
+.timeline-card {
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+}
+
+.timeline-card .card-inner {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  transform-style: preserve-3d;
+}
+
+.timeline-card.panel-visible .card-inner {
+  animation: panel-enter 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+.branch-line {
+  will-change: transform;
+  transform: scaleX(0);
+}
+
+.branch-visible .branch-line {
+  animation: branch-glitch 0.4s steps(4, end) forwards;
+}
+
+.spotlight-pulse {
+  animation: locate-target 1.5s cubic-bezier(0.25, 0.8, 0.25, 1) 2;
+  scroll-margin-top: 6rem;
+}
+
+.glitch-overlay {
+  pointer-events: none;
+  animation: glitch-rgb 0.2s steps(2) infinite;
+}
+
+.back-to-top {
+  animation: portal-spin 8s linear infinite, float 3s ease-in-out infinite;
+}
+
+.timeline-dimmed .timeline-card:not(.spotlight-pulse) {
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+}
+
+/* Glow helpers driven by inline --glow-color on each card */
+.card-glow {
+  box-shadow: 0 0 20px color-mix(in oklab, var(--glow-color, var(--tva)) 35%, transparent);
+}
+
+.card-glow-hover:hover {
+  box-shadow: 0 0 28px color-mix(in oklab, var(--glow-color, var(--tva)) 55%, transparent);
+}
+
