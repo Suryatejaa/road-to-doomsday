@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { Badge } from "@/components/ui/badge";
+import { categoryColorClasses, type CategoryToken } from "@/lib/category-styles";
 import { cn } from "@/lib/utils";
 import type { TimelineEntry } from "@/lib/timeline-data";
 
@@ -19,6 +20,7 @@ export function TimelineCard({ entry, isVisible, isSpotlight }: TimelineCardProp
   const cardRef = useRef<HTMLDivElement>(null);
   const [transform, setTransform] = useState("");
   const [posterTransform, setPosterTransform] = useState("");
+  const colors = categoryColorClasses[entry.categoryToken as CategoryToken];
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -34,8 +36,6 @@ export function TimelineCard({ entry, isVisible, isSpotlight }: TimelineCardProp
     setPosterTransform("");
   };
 
-  const glowColor = `var(--cat-${entry.categoryToken})`;
-
   return (
     <div
       id={entry.id}
@@ -44,7 +44,7 @@ export function TimelineCard({ entry, isVisible, isSpotlight }: TimelineCardProp
         "timeline-card group relative rounded-2xl",
         isSpotlight && "spotlight-pulse",
       )}
-      style={{ perspective: "800px", ["--glow-color" as string]: glowColor } as React.CSSProperties}
+      style={{ perspective: "800px", ["--glow-color" as string]: `var(--cat-${entry.categoryToken})` } as React.CSSProperties}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
     >
@@ -52,20 +52,16 @@ export function TimelineCard({ entry, isVisible, isSpotlight }: TimelineCardProp
         className={cn(
           "card-inner card-glow card-glow-hover relative overflow-hidden rounded-2xl border bg-card p-5",
           "border-border/60 hover:border-[var(--glow-color)]",
+          isVisible && "panel-visible",
         )}
       >
-        <div
-          className="card-content"
-          style={{ transform }}
-        >
+        <div className="card-content" style={{ transform }}>
           <div className="relative mb-4 aspect-[16/9] overflow-hidden rounded-xl bg-muted">
             <div
-              className={cn(
-                "absolute inset-0 flex items-center justify-center bg-cat-" + entry.categoryToken + "/10",
-              )}
+              className={cn("absolute inset-0 flex items-center justify-center", colors.bgSubtle)}
               style={{ transform: posterTransform }}
             >
-              <span className={cn("text-6xl font-black opacity-20", `text-cat-${entry.categoryToken}`)}>
+              <span className={cn("text-6xl font-black opacity-20", colors.text)}>
                 {entry.chronological_position}
               </span>
             </div>
@@ -81,7 +77,11 @@ export function TimelineCard({ entry, isVisible, isSpotlight }: TimelineCardProp
 
           <div className="mt-4 flex flex-wrap items-center gap-2">
             <span
-              className={cn("inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium", `border-cat-${entry.categoryToken}/30 text-cat-${entry.categoryToken}`)}
+              className={cn(
+                "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium",
+                colors.border + "/30",
+                colors.text,
+              )}
             >
               {entry.categoryLabel}
             </span>
@@ -99,3 +99,4 @@ export function TimelineCard({ entry, isVisible, isSpotlight }: TimelineCardProp
     </div>
   );
 }
+
