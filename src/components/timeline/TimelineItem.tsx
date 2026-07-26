@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { categoryColorClasses, type CategoryToken } from "@/lib/category-styles";
 import { cn } from "@/lib/utils";
 import { TimelineCard } from "./TimelineCard";
 import type { TimelineEntry } from "@/lib/timeline-data";
@@ -23,6 +24,7 @@ export function TimelineItem({ entry, index, spotlightId }: TimelineItemProps) {
   const isEven = index % 2 === 0;
   const hasBranch = BRANCH_CATEGORIES.has(entry.universe_category);
   const isSpotlight = spotlightId === entry.id;
+  const colors = categoryColorClasses[entry.categoryToken as CategoryToken];
 
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined" || !itemRef.current) return;
@@ -54,17 +56,14 @@ export function TimelineItem({ entry, index, spotlightId }: TimelineItemProps) {
         <span
           className={cn(
             "absolute top-1/2 h-0.5 w-12 origin-left scale-x-0 md:w-24",
-            "bg-cat-" + entry.categoryToken,
+            colors.bg,
             isEven ? "md:right-full md:origin-right" : "md:left-full md:origin-left",
             "left-full origin-left",
             "branch-line",
           )}
         />
         <span
-          className={cn(
-            "relative block h-3 w-3 rounded-full border-2 bg-background shadow-sm",
-            "border-cat-" + entry.categoryToken,
-          )}
+          className={cn("relative block h-3 w-3 rounded-full border-2 bg-background shadow-sm", colors.border)}
           style={{ boxShadow: `0 0 12px color-mix(in oklab, var(--cat-${entry.categoryToken}) 50%, transparent)` }}
         />
       </div>
@@ -75,3 +74,4 @@ export function TimelineItem({ entry, index, spotlightId }: TimelineItemProps) {
     </div>
   );
 }
+
