@@ -103,7 +103,7 @@ export function TimelineItem({ entry, index, spotlightId }: TimelineItemProps) {
       </div>
 
       {/* Case File Card */}
-      <div className="flex-1 w-full pb-8">
+      <div className="flex-1 w-full pb-0">
         <TimelineCard entry={entry} isVisible={visible} isSpotlight={isSpotlight} isFractured={isFractured} />
       </div>
     </div>

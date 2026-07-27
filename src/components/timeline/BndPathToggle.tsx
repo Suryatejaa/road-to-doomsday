@@ -16,26 +16,39 @@ export function BndPathToggle({ active, onToggle }: BndPathToggleProps) {
       type="button"
       role="switch"
       aria-checked={active}
+      aria-label="Road to Spider-Man: Brand New Day watch path"
       onClick={() => onToggle(!active)}
       className={cn(
-        "group relative inline-flex items-center gap-2.5 rounded-sm border px-4 py-2 font-mono text-xs uppercase tracking-[0.15em] transition-all duration-200",
-        "border-[#4a3a1e]/60 bg-[#14100B]/70 text-[#D9C9A3]/70 backdrop-blur",
-        "hover:border-[#F2A93B]/60 hover:text-[#EFE6D0]",
-        active && "border-[#F2A93B] bg-[#241c0c]/80 text-[#F2A93B] shadow-[0_0_14px_rgba(242,169,59,0.25)]"
+        "group relative inline-flex items-center gap-5 justify-between rounded-sm border px-1 -py-4 transition-all duration-200",
+        "border-[#4a3a1e] bg-[#14100B]/70 backdrop-blur animate-pulse",
+        "hover:border-[#F2A93B]/60",
+        active && "border-[#F2A93B] bg-[#241c0c]/80 shadow-[0_0_14px_rgba(242,169,59,0.25)] animate-none"
       )}
     >
-      <span className="relative flex h-2 w-2 shrink-0">
+      {!active && (<span className="relative flex text-[#F2A93B]/90 opacity-70 animate-pulse">
         {active && (
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#F2A93B] opacity-75" />
         )}
         <span
           className={cn(
-            "relative inline-flex h-2 w-2 rounded-full transition-colors",
+            "relative inline-flex rounded-full transition-colors",
             active ? "bg-[#F2A93B]" : "bg-[#4a3a1e]"
           )}
         />
+        Road To
       </span>
-      Road to Brand New Day
+      )}
+      {/* Case-file emblem — desaturated until the path is active, like an
+          unlit terminal icon powering on */}
+      <img
+        src="/images/bnd-logo.png"
+        alt=""
+        className={cn(
+          "h-10 w-auto object-contain opacity-70 transition-all duration-300",
+          "group-hover:grayscale-0 group-hover:opacity-90",
+          active && "grayscale-0 opacity-100"
+        )}
+      />
     </button>
   );
 }

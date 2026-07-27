@@ -100,11 +100,11 @@ function Index() {
       <HeroSection />
 
       <main className="relative mx-auto max-w-6xl px-0 pb-24">
-        <div className="sticky top-4 z-40 space-y-4 rounded-2xl border border-border/40 bg-background/70 px-0 py-4 backdrop-blur-xl shadow-lg">
-          <div className="sticky top-4 z-40 space-y-4 rounded-2xl border border-border/40 bg-background/70 px-0 py-4 backdrop-blur-xl shadow-lg">
+        <div className="sticky top-4 z-40 space-y-2 rounded-none border border-border/40 bg-background/70 px-0 py-2 backdrop-blur-xl shadow-lg">
+          <div className="sticky top-0 z-40 space-y-2 rounded-none border border-border/40 bg-background/70 px-0 py-2 backdrop-blur-xl shadow-lg">
             <SearchLocator data={timelineData} onSpotlight={setSpotlightId} />
 
-            <div className="px-2 ">
+            <div className="px-2 flex items-center justify-center">
               <BndPathToggle active={bndPathActive} onToggle={handleBndToggle} />
             </div>
 
@@ -129,7 +129,7 @@ function Index() {
               style={{ height: "100%", transform: `scaleY(${lineProgress})` }}
             />
 
-            <div key={wave} className={cn("relative space-y-12 timeline-wave", spotlightId && "timeline-dimmed")}>
+            <div key={wave} className={cn("relative space-y-8 timeline-wave", spotlightId && "timeline-dimmed")}>
               {filtered.map((entry, index) => (
                 <TimelineItem key={entry.id} entry={entry} index={index} spotlightId={spotlightId} />
               ))}
