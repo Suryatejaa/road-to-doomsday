@@ -379,3 +379,18 @@
   box-shadow: 0 0 28px color-mix(in oklab, var(--glow-color, var(--tva)) 55%, transparent);
 }
 
+.timeline-card {
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+}
+.timeline-card:hover {
+  transform: translateY(-6px);
+}
+
+@keyframes wave-in {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.timeline-wave > * {
+  animation: wave-in 0.28s ease-out both;
+}
+
