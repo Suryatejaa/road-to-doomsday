@@ -44,7 +44,7 @@ export function HeroSection() {
         
         <Galaxy
           hueShift={35}
-          density={1}
+          density={0.9}
           glowIntensity={0.35}
           saturation={0.7}
           twinkleIntensity={0.4}
