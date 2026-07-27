@@ -3,7 +3,7 @@ export interface TimelineEntry {
   title: string;
   setting_period: string;
   universe_category: string;
-  importance_tier: "Mandatory" | "Hi-Recomnd" | "Optional";
+  importance_tier: "Mndtry" | "Hi-Recomnd" | "Optional";
   streaming_platforms: string[];
   id: string;
   categoryToken: string;
@@ -67,7 +67,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Captain America: The First Avenger",
     "setting_period": "1942-1945",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -93,7 +93,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "The Fantastic Four: First Steps",
     "setting_period": "1960s (Alternate Timeline)",
     "universe_category": "MCU Multiverse Nexus",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Theaters (July 2025)"
     ],
@@ -106,7 +106,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "X-Men Days of Future Past (Past Era)",
     "setting_period": "1973",
     "universe_category": "Fox Mutant Legacy",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+"
     ],
@@ -236,7 +236,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Iron Man",
     "setting_period": "2008",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -275,7 +275,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Thor",
     "setting_period": "2011",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -288,7 +288,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "The Avengers",
     "setting_period": "2012",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -340,7 +340,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Captain America: The Winter Soldier",
     "setting_period": "2014",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -353,7 +353,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Guardians of the Galaxy",
     "setting_period": "2014",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -379,7 +379,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Daredevil (Season 1)",
     "setting_period": "2015",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -392,7 +392,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Avengers: Age of Ultron",
     "setting_period": "2015",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -431,7 +431,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Daredevil (Season 2)",
     "setting_period": "2016",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -457,7 +457,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Captain America: Civil War",
     "setting_period": "2016",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -470,7 +470,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Black Widow (Main Story)",
     "setting_period": "2016",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -483,7 +483,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Spider-Man: Homecoming",
     "setting_period": "2016",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Netflix",
       "SonyLiv"
@@ -497,7 +497,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Deadpool",
     "setting_period": "2016",
     "universe_category": "Fox Mutant Legacy",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -510,7 +510,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Doctor Strange",
     "setting_period": "2016-2017",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -536,7 +536,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "The Defenders",
     "setting_period": "2017",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -549,7 +549,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "The Punisher (Season 1)",
     "setting_period": "2017",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -601,7 +601,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Daredevil (Season 3)",
     "setting_period": "2017",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -614,7 +614,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Black Panther",
     "setting_period": "2017",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -627,7 +627,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Thor: Ragnarok",
     "setting_period": "2017",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -679,7 +679,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Avengers: Infinity War",
     "setting_period": "2018",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -692,7 +692,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Deadpool 2",
     "setting_period": "2018",
     "universe_category": "Fox Mutant Legacy",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -718,7 +718,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Spider-Man: Into the Spider-Verse",
     "setting_period": "Alternative Multi-Universe",
     "universe_category": "Sony Animation Canon",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Prime Video",
       "SonyLiv"
@@ -732,7 +732,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Avengers: Endgame",
     "setting_period": "2018-2023",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -745,7 +745,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Loki (Seasons 1 & 2)",
     "setting_period": "Outside of Time (TVA Nexus)",
     "universe_category": "MCU Multiverse Nexus",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -785,7 +785,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Shang-Chi and the Legend of the Ten Rings",
     "setting_period": "2024",
     "universe_category": "MCU New Avengers Build",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -798,7 +798,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Spider-Man: No Way Home",
     "setting_period": "2024",
     "universe_category": "MCU Multiverse Nexus",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Netflix",
       "SonyLiv"
@@ -825,7 +825,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Hawkeye",
     "setting_period": "2024 (Christmas)",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -838,7 +838,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Doctor Strange in the Multiverse of Madness",
     "setting_period": "2025",
     "universe_category": "MCU Multiverse Nexus",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -942,7 +942,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Spider-Man: Across the Spider-Verse",
     "setting_period": "Alternative Multi-Universe",
     "universe_category": "Sony Animation Canon",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Netflix",
       "SonyLiv"
@@ -982,7 +982,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Captain America: Brave New World",
     "setting_period": "2026",
     "universe_category": "MCU Earth-616 Frontline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -995,7 +995,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Thunderbolts*",
     "setting_period": "2026",
     "universe_category": "MCU Earth-616 Frontline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -1008,7 +1008,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Deadpool & Wolverine",
     "setting_period": "2026 (TVA Era Breakout)",
     "universe_category": "MCU Multiverse Nexus",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -1021,7 +1021,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Daredevil: Born Again (Season 1)",
     "setting_period": "2026",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -1034,7 +1034,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "The Punisher: One Last Kill",
     "setting_period": "2026",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -1047,7 +1047,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Daredevil: Born Again (Season 2)",
     "setting_period": "2026",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -1060,7 +1060,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Spider-Man: Beyond the Spider-Verse",
     "setting_period": "Alternative Multi-Universe",
     "universe_category": "Sony Animation Canon",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Theaters / VOD"
     ],
@@ -1073,7 +1073,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Spider-Man: Brand New Day",
     "setting_period": "2026 (Modern Nexus Point)",
     "universe_category": "MCU Earth-616 Frontline",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Theaters"
     ],
@@ -1086,7 +1086,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "Logan (Future Era)",
     "setting_period": "2029 (Branch Anchor Break)",
     "universe_category": "Fox Mutant Legacy",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+"
     ],
@@ -1099,7 +1099,7 @@ const rawTimelineData: TimelineEntry[] = [
     "title": "X-Men Days of Future Past (Future Era)",
     "setting_period": "2023 / 2030 (Pruned Timeline)",
     "universe_category": "Fox Mutant Legacy",
-    "importance_tier": "Mandatory",
+    "importance_tier": "Mndtry",
     "streaming_platforms": [
       "Disney+"
     ],

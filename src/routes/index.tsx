@@ -104,20 +104,20 @@ function Index() {
           <div className="sticky top-4 z-40 space-y-4 rounded-2xl border border-border/40 bg-background/70 px-0 py-4 backdrop-blur-xl shadow-lg">
             <SearchLocator data={timelineData} onSpotlight={setSpotlightId} />
 
-            <div className="px-2">
+            <div className="px-2 ">
               <BndPathToggle active={bndPathActive} onToggle={handleBndToggle} />
             </div>
 
             <div
               className={cn(
-                "space-y-4 transition-opacity duration-300",
+                "space-y-1 transition-opacity duration-300",
                 bndPathActive && "pointer-events-none opacity-40"
               )}
             >
               <div className="px-2">
                 <CategoryTabs activeKey={filterKey} onSelect={handleFilter} />
               </div>
-              <div className="px-4">
+              <div className="px-2">
                 <ImportanceTabs selected={selectedTier} onSelect={handleTierSelect} />
               </div>
             </div>

@@ -13,7 +13,7 @@ interface TimelineCardProps {
 }
 
 const tierVariant: Record<string, "default" | "secondary" | "outline"> = {
-  Mandatory: "default",
+  Mndtry: "default",
   "Highly Recommended": "secondary",
   Optional: "outline",
 };

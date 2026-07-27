@@ -76,7 +76,7 @@ interface CategoryTabsProps {
 export function CategoryTabs({ activeKey, onSelect }: CategoryTabsProps) {
   return (
     <div
-      className="flex snap-x snap-mandatory gap-2 overflow-x-auto pb-1 pt-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      className="flex snap-x snap-mandatory gap-1 overflow-x-auto pb-1 pt-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       role="tablist"
       aria-label="Universe filters"
     >
@@ -91,7 +91,7 @@ export function CategoryTabs({ activeKey, onSelect }: CategoryTabsProps) {
             type="button"
             onClick={() => onSelect(group.key)}
             className={cn(
-              "group relative snap-start shrink-0 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-200",
+              "group relative snap-start shrink-0 inline-flex items-center gap-2 rounded-full border px-2 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-200",
               "border-border/70 bg-card/70 text-muted-foreground backdrop-blur",
               "hover:text-foreground hover:border-[var(--glow-color)]",
               isActive && "text-foreground border-[var(--glow-color)] bg-card",
@@ -107,7 +107,7 @@ export function CategoryTabs({ activeKey, onSelect }: CategoryTabsProps) {
   );
 }
 
-export const importanceOptions = ["all", "Mandatory", "Hi-Recmd", "Optnl"] as const;
+export const importanceOptions = ["all", "Mndtry", "Hi-Recmd", "Optnl"] as const;
 export type ImportanceOption = (typeof importanceOptions)[number];
 
 interface ImportanceTabsProps {
@@ -135,7 +135,7 @@ export function ImportanceTier({ tier }: ImportanceTierProps) {
 
 export function ImportanceTabs({ selected, onSelect }: ImportanceTabsProps) {
   return (
-    <div className="flex flex-wrap gap-2" role="tablist" aria-label="Importance tiers">
+    <div className="flex flex-wrap gap-1" role="tablist" aria-label="Importance tiers">
       {importanceOptions.map((opt) => {
         const isActive = selected === opt;
         const label = opt === "all" ? "All" : `${opt}`;
@@ -143,7 +143,7 @@ export function ImportanceTabs({ selected, onSelect }: ImportanceTabsProps) {
         // FIX: Map your uppercase option strings to active tokens in categoryColorClasses
         let token: CategoryToken = "mcu"; // Default fallback
         
-        if (opt === "Mandatory") token = "street"; // e.g., mapping to your working red dot
+        if (opt === "Mndtry") token = "street"; // e.g., mapping to your working red dot
         if (opt === "Hi-Recmd") token = "mcu";    // e.g., mapping to your working yellow dot
         if (opt === "Optnl") token = "fox";       // e.g., mapping to your working green dot
 
@@ -157,7 +157,7 @@ export function ImportanceTabs({ selected, onSelect }: ImportanceTabsProps) {
             aria-selected={isActive}
             onClick={() => onSelect(opt)}
             className={cn(
-              "flex items-center justify-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider transition",
+              "flex items-center justify-center rounded-full px-2 py-1.5 text-xs font-semibold uppercase tracking-wider transition",
               isActive 
                 ? "bg-card border-[var(--glow-color)] text-foreground" 
                 : "bg-card/70 text-muted-foreground border border-transparent"
