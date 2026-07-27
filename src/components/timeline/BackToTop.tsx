@@ -22,7 +22,7 @@ export function BackToTop() {
       type="button"
       onClick={scrollToTop}
       className={cn(
-        "back-to-top fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border-2 border-tva bg-background text-tva shadow-lg transition-all duration-300 hover:scale-110 hover:text-tva-glow",
+        "back-to-top fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full border-2 border-tva bg-background text-tva shadow-lg transition-all duration-300 hover:scale-110 hover:text-tva-glow",
         show ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0",
       )}
       aria-label="Back to top"

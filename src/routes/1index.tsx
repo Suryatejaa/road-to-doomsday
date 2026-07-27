@@ -5,13 +5,12 @@ import { HeroSection } from "@/components/timeline/HeroSection";
 import { SearchLocator } from "@/components/timeline/SearchLocator";
 import { TimelineItem } from "@/components/timeline/TimelineItem";
 import { BackToTop } from "@/components/timeline/BackToTop";
-import { MusicPlayer } from "@/components/timeline/MusicPlayer";
 import { BndPathToggle } from "@/components/timeline/BndPathToggle";
 import { CategoryTabs, filterGroups, ImportanceTabs, ImportanceTier, importanceOptions } from "@/components/timeline/CategoryFilter";
 import { timelineData } from "@/lib/timeline-data";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/1index")({
   head: () => ({
     meta: [
       { title: "Marvel Timeline Guide — Sacred Timeline & Multiverse Watch Order" },
@@ -138,7 +137,6 @@ function Index() {
         </div>
       </main>
 
-      <MusicPlayer />
       <BackToTop />
     </div>
   );

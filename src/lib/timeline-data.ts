@@ -8,6 +8,8 @@ export interface TimelineEntry {
   id: string;
   categoryToken: string;
   categoryLabel: string;
+  /** Part of the curated "Road to Brand New Day" watch path */
+  requiredForBnd?: boolean;
 
 }
 
@@ -59,7 +61,7 @@ export const categoryMeta: Record<string, { token: string; label: string }> = {
  
 };
 
-export const timelineData: TimelineEntry[] = [
+const rawTimelineData: TimelineEntry[] = [
   {
     "chronological_position": 1,
     "title": "Captain America: The First Avenger",
@@ -1106,5 +1108,49 @@ export const timelineData: TimelineEntry[] = [
     "categoryLabel": "Mutant Legacy"
   }
 ];
+
+
+// Entries on the curated "Road to Spider-Man: Brand New Day" path —
+// the essential watch order building directly into the film.
+const BND_ROAD_IDS = new Set<string>([
+  // 1. Core Crossover Milestones
+  "card-captain-america-civil-war",
+  "card-avengers-infinity-war",
+  "card-avengers-endgame",
+
+  // 2. Yelena Belova Transition Line
+  "card-black-widow",
+  "card-hawkeye",
+  "card-thunderbolts",
+
+  // 3. The Original Netflix Street-Level Ecosystem
+  "card-daredevil-season-1",
+  "card-jessica-jones-season-1",
+  "card-daredevil-season-2",
+  "card-luke-cage-season-1",
+  "card-the-defenders",
+  "card-the-punisher-season-1",
+  "card-daredevil-season-3",
+
+  // 4. Modern Post-Blip Street & Legal Network
+  "card-she-hulk-attorney-at-law",
+  "card-daredevil-born-again-season-1",
+  "card-the-punisher-one-last-kill",
+  "card-daredevil-born-again-season-2",
+
+  // 5. Frontline Blockbusters Pre-Doomsday
+  "card-spider-man-homecoming",
+  "card-spider-man-far-from-home",
+  "card-spider-man-no-way-home",
+  "card-captain-america-brave-new-world",
+  "card-deadpool-wolverine",
+  "card-spider-man-brand-new-day",
+]);
+
+
+export const timelineData: TimelineEntry[] = rawTimelineData.map((entry) => ({
+  ...entry,
+  requiredForBnd: BND_ROAD_IDS.has(entry.id),
+}));
 
 export const universeCategories = ["Fox Legacy Foundation","Fox Mutant Legacy","MCU Animation Canon","MCU Cosmic Lore","MCU Earth-616 Frontline","MCU Multiverse Nexus","MCU Mutant Animation","MCU New Avengers Build","MCU Sacred Timeline","Sony Animation Canon","Street Level Ecosystem"] as const;
