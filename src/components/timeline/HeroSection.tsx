@@ -41,7 +41,7 @@ export function HeroSection() {
     <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-black px-4 font-mono select-none">
       {/* Sacred Timeline starfield — every star is a pruned or unpruned branch */}
       <div className="absolute inset-0 z-0">
-        
+
         <Galaxy
           hueShift={35}
           density={0.9}
@@ -96,7 +96,7 @@ export function HeroSection() {
         </div>
 
         {/* The Flashing System Log Streamer */}
-        <div className="relative h-16 w-full flex items-center justify-center" aria-hidden="true">
+        <div className="relative h-16 w-full hidden flex items-center justify-center" aria-hidden="true">
           {!isBooted ? (
             <span className={cn(
               "absolute text-xs tracking-widest font-bold uppercase transition-all duration-75 animate-pulse",
@@ -120,11 +120,11 @@ export function HeroSection() {
             )}
             style={{ textShadow: "0 0 30px rgba(255,255,255,0.05)" }}
           >
-            MULTIVERSE
+            MARVEL
           </h1>
           <h2
             className={cn(
-              "text-3xl font-black uppercase tracking-[0.25em] text-[#F2A93B] sm:text-5xl md:text-6xl lg:text-7xl scale-105 opacity-0 transition-all duration-1000 delay-300 ease-out mt-[-10px]",
+              "text-2xl font-black uppercase tracking-[0.25em] text-[#F2A93B] sm:text-5xl md:text-6xl lg:text-7xl scale-105 opacity-0 transition-all duration-1000 delay-300 ease-out mt-[-10px]",
               isBooted && "scale-100 opacity-100"
             )}
             style={{ textShadow: "0 0 15px rgba(242,169,59,0.4)" }}
@@ -142,6 +142,14 @@ export function HeroSection() {
         >
           Comprehensive indexing of the Earth-616 Sacred Timeline segments, alternate animation sub-clusters, and the collapsing Fox legacy variant branches.
         </p>
+        <span
+          className={cn(
+            "mt-8 max-w-2xl text-sm leading-relaxed tracking-wide uppercase opacity-0 animate-pulse translate-y-4 transition-all duration-700 delay-800 text-[#db4f4f]",
+            isBooted && "opacity-100 translate-y-0"
+          )}
+        >
+          Built by Surya. Made for every Marvel fan.
+        </span>
 
         {/* Dynamic Diagnostic Metrics Footer */}
         <div
