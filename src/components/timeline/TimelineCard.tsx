@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { categoryColorClasses, type CategoryToken } from "@/lib/category-styles";
 import { cn } from "@/lib/utils";
+import { useWatched } from "@/hooks/useWatched";
 import type { TimelineEntry } from "@/lib/timeline-data";
 
 interface TimelineCardProps {
@@ -27,6 +28,7 @@ export function TimelineCard({ entry, isVisible, isSpotlight, isFractured }: Tim
   const [transform, setTransform] = useState("");
   const [glare, setGlare] = useState({ x: 0, y: 0, opacity: 0 });
   const colors = categoryColorClasses[entry.categoryToken as CategoryToken];
+  const { isWatched, toggleWatched } = useWatched(entry.id);
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -72,7 +74,8 @@ export function TimelineCard({ entry, isVisible, isSpotlight, isFractured }: Tim
           "relative overflow-hidden rounded-sm border bg-[#14100B]/85 backdrop-blur-md p-5 transition-all duration-500",
           isFractured
             ? "border-[#5c2a12]/60 hover:border-[#E85D2C]/70 shadow-[inset_0_0_14px_rgba(232,93,44,0.08)]"
-            : "border-[#4a3a1e]/60 hover:border-[#F2A93B]/70 shadow-[inset_0_0_14px_rgba(242,169,59,0.08)]"
+            : "border-[#4a3a1e]/60 hover:border-[#F2A93B]/70 shadow-[inset_0_0_14px_rgba(242,169,59,0.08)]",
+          isWatched && "opacity-60 saturate-[0.5]"
         )}
       >
         {/* Amber phosphor CRT scanline overlay — single-channel, monochrome monitor */}
@@ -93,11 +96,23 @@ export function TimelineCard({ entry, isVisible, isSpotlight, isFractured }: Tim
         {/* Rubber-stamped PRUNED mark for fractured / variant branches */}
         {isFractured && (
           <div
-            className="absolute -right-2 top-15 z-20 select-none pointer-events-none"
+            className="absolute -right-1 top-15 z-20 select-none pointer-events-none"
             style={{ transform: "rotate(-11deg)" }}
           >
             <span className="block border-[3px] border-double border-[#E85D2C]/80 px-2.5 py-1 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-[#E85D2C]/85 [text-shadow:0_0_6px_rgba(232,93,44,0.5)]">
               Variance
+            </span>
+          </div>
+        )}
+
+        {/* Rubber-stamped REVIEWED mark once the entry is filed as watched */}
+        {isWatched && (
+          <div
+            className="absolute -right-1 top-26 z-20 select-none pointer-events-none"
+            style={{ transform: "rotate(-11deg)" }}
+          >
+            <span className="block border-[3px] border-double border-[#8B6F47]/80 px-2.5 py-1 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-[#8B6F47]/85">
+              Watched
             </span>
           </div>
         )}
@@ -134,8 +149,31 @@ export function TimelineCard({ entry, isVisible, isSpotlight, isFractured }: Tim
             </Badge>
           </div>
 
+          {/* Case Disposition — mark this file as reviewed */}
+          <label
+            className="mt-4 flex w-fit cursor-pointer select-none items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-[#D9C9A3]/60 hover:text-[#D9C9A3]/90 transition-colors"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="relative flex h-3.5 w-3.5 items-center justify-center">
+              <input
+                type="checkbox"
+                checked={isWatched}
+                onChange={toggleWatched}
+                className="peer absolute inset-0 h-full w-full cursor-pointer appearance-none rounded-[2px] border border-[#4a3a1e]/70 bg-[#241c0c]/60 transition-colors checked:border-[#8B6F47] checked:bg-[#8B6F47]/30"
+              />
+              <svg
+                viewBox="0 0 12 12"
+                className="pointer-events-none absolute h-2 w-2 scale-0 text-[#D9C9A3] transition-transform peer-checked:scale-100"
+                fill="none"
+              >
+                <path d="M2 6.2L4.8 9L10 2.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            Mark as watched
+          </label>
+
           {/* Filing & Distribution Stamps */}
-          <div className="mt-5 flex flex-wrap items-center gap-1.5 border-t border-[#4a3a1e]/40 pt-4">
+          <div className="mt-4 flex flex-wrap items-center gap-1.5 border-t border-[#4a3a1e]/40 pt-4">
             <span
               className={cn(
                 "inline-flex items-center font-mono rounded-sm px-2 py-0.5 text-[10px] uppercase tracking-wider font-semibold border",

@@ -17,6 +17,11 @@ const tierVariant: Record<string, "default" | "secondary" | "outline"> = {
   Optional: "outline",
 };
 
+// TVA case-file numbering — every sanctioned event gets a file number
+function toCaseNumber(n: number) {
+  return `TVA-${String(n).padStart(4, "0")}`;
+}
+
 export function TimelineCard({ entry, isVisible, isSpotlight, isFractured }: TimelineCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [transform, setTransform] = useState("");
@@ -28,19 +33,19 @@ export function TimelineCard({ entry, isVisible, isSpotlight, isFractured }: Tim
     const rect = cardRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
-    
+
     // Smooth 3D Perspective Tilt Mechanics
     setTransform(`rotateX(${-y * 8}deg) rotateY(${x * 8}deg) scale(1.01)`);
     setGlare({
-      x: (e.clientX - rect.left),
-      y: (e.clientY - rect.top),
-      opacity: 0.15
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+      opacity: 0.18,
     });
   };
 
   const handleLeave = () => {
     setTransform("");
-    setGlare(prev => ({ ...prev, opacity: 0 }));
+    setGlare((prev) => ({ ...prev, opacity: 0 }));
   };
 
   return (
@@ -48,75 +53,103 @@ export function TimelineCard({ entry, isVisible, isSpotlight, isFractured }: Tim
       id={entry.id}
       ref={cardRef}
       className={cn(
-        "relative rounded-xl transition-all duration-300 ease-out style-card scroll-mt-28",
+        "relative rounded-sm transition-all duration-300 ease-out style-card scroll-mt-28",
         isSpotlight && "animate-[tvaAlert_1s_ease-in-out_infinite]"
       )}
-      style={{ 
-        perspective: "1000px", 
-        transform,
-        ["--glow-color" as string]: `var(--cat-${entry.categoryToken})` 
-      } as React.CSSProperties}
+      style={
+        {
+          perspective: "1000px",
+          transform,
+          ["--glow-color" as string]: `var(--cat-${entry.categoryToken})`,
+        } as React.CSSProperties
+      }
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
     >
-      {/* High-Tech Terminal Card Chassis */}
+      {/* Analog Case-File Chassis — amber phosphor terminal housed in a TVA file jacket */}
       <div
         className={cn(
-          "relative overflow-hidden rounded-xl border bg-black/60 backdrop-blur-md p-5 transition-all duration-500",
-          isFractured 
-            ? "border-red-950/40 hover:border-red-500/60 shadow-[inset_0_0_12px_rgba(239,68,68,0.05)]" 
-            : "border-emerald-950/40 hover:border-emerald-500/60 shadow-[inset_0_0_12px_rgba(16,185,129,0.05)]"
+          "relative overflow-hidden rounded-sm border bg-[#14100B]/85 backdrop-blur-md p-5 transition-all duration-500",
+          isFractured
+            ? "border-[#5c2a12]/60 hover:border-[#E85D2C]/70 shadow-[inset_0_0_14px_rgba(232,93,44,0.08)]"
+            : "border-[#4a3a1e]/60 hover:border-[#F2A93B]/70 shadow-[inset_0_0_14px_rgba(242,169,59,0.08)]"
         )}
       >
-        {/* CRT Scanline Display Overlay Grid */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_4px,3px_100%]" />
-        
+        {/* Amber phosphor CRT scanline overlay — single-channel, monochrome monitor */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.05] bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,0,0,0.3)_50%),linear-gradient(90deg,rgba(242,169,59,0.05),transparent,rgba(242,169,59,0.05))] bg-[size:100%_4px,3px_100%]" />
+
+        {/* Aged paper vignette — case files don't stay pristine */}
+        <div className="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(ellipse_at_top_left,rgba(242,169,59,0.04),transparent_60%)]" />
+
         {/* Interactive Flashlight Glare Node */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none transition-opacity duration-300 mix-blend-screen"
           style={{
-            background: `radial-gradient(circle 120px at ${glare.x}px ${glare.y}px, rgba(255,255,255,0.12), transparent)`,
-            opacity: glare.opacity
+            background: `radial-gradient(circle 120px at ${glare.x}px ${glare.y}px, rgba(242,169,59,0.15), transparent)`,
+            opacity: glare.opacity,
           }}
         />
+
+        {/* Rubber-stamped PRUNED mark for fractured / variant branches */}
+        {isFractured && (
+          <div
+            className="absolute -right-2 top-15 z-20 select-none pointer-events-none"
+            style={{ transform: "rotate(-11deg)" }}
+          >
+            <span className="block border-[3px] border-double border-[#E85D2C]/80 px-2.5 py-1 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-[#E85D2C]/85 [text-shadow:0_0_6px_rgba(232,93,44,0.5)]">
+              Variance
+            </span>
+          </div>
+        )}
 
         <div className="relative z-10">
           <div className="flex items-start justify-between gap-4">
             <div>
-              {/* Index Stream Header ID */}
+              {/* Case File Header Strip */}
               <div className="flex items-center gap-2 mb-1.5">
-                <span className={cn(
-                  "font-mono text-xs font-bold tracking-widest px-1.5 py-0.5 rounded",
-                  isFractured ? "bg-red-950/50 text-red-400" : "bg-emerald-950/50 text-emerald-400"
-                )}>
-                  LOC_{String(entry.chronological_position).padStart(3, '0')}
+                <span
+                  className={cn(
+                    "font-mono text-xs font-bold tracking-widest px-1.5 py-0.5 rounded-sm border",
+                    isFractured
+                      ? "bg-[#2a1208]/70 border-[#E85D2C]/30 text-[#E85D2C]"
+                      : "bg-[#241c0c]/70 border-[#F2A93B]/30 text-[#F2A93B]"
+                  )}
+                >
+                  {toCaseNumber(entry.chronological_position)}
                 </span>
-                <span className="text-[10px] uppercase font-mono tracking-wider opacity-40">
-                  {isFractured ? "Timeline_Branch_Variance" : "Sacred_Sequence"}
+                <span className="text-[10px] uppercase font-mono tracking-[0.15em] text-[#D9C9A3]/40">
+                  {isFractured ? "Nexus Event — Unpruned" : "Sacred Timeline"}
                 </span>
               </div>
-              <h3 className="text-lg font-extrabold tracking-tight text-white/90 group-hover:text-white transition-colors">
+              <h3 className="text-lg font-extrabold tracking-tight text-[#EFE6D0] group-hover:text-white transition-colors">
                 {entry.title}
               </h3>
-              <p className="mt-1 font-mono text-xs text-muted-foreground/80">{entry.setting_period}</p>
+              <p className="mt-1 font-mono text-xs text-[#D9C9A3]/60">{entry.setting_period}</p>
             </div>
-            <Badge variant={tierVariant[entry.importance_tier]} className="font-mono text-[10px] tracking-wider uppercase shrink-0">
+            <Badge
+              variant={tierVariant[entry.importance_tier]}
+              className="font-mono text-[10px] tracking-wider uppercase shrink-0"
+            >
               {entry.importance_tier}
             </Badge>
           </div>
 
-          {/* Infrastructure Distribution Badges */}
-          <div className="mt-5 flex flex-wrap items-center gap-1.5 border-t border-white/[0.06] pt-4">
-            <span className={cn(
-              "inline-flex items-center font-mono rounded px-2 py-0.5 text-[10px] uppercase tracking-wider font-semibold border",
-              isFractured ? "bg-red-950/20 border-red-900/30 text-red-400" : "bg-emerald-950/20 border-emerald-900/30 text-emerald-400"
-            )}>
+          {/* Filing & Distribution Stamps */}
+          <div className="mt-5 flex flex-wrap items-center gap-1.5 border-t border-[#4a3a1e]/40 pt-4">
+            <span
+              className={cn(
+                "inline-flex items-center font-mono rounded-sm px-2 py-0.5 text-[10px] uppercase tracking-wider font-semibold border",
+                isFractured
+                  ? "bg-[#2a1208]/40 border-[#E85D2C]/30 text-[#E85D2C]/90"
+                  : "bg-[#241c0c]/40 border-[#F2A93B]/30 text-[#F2A93B]/90"
+              )}
+            >
               {entry.categoryLabel}
             </span>
             {entry.streaming_platforms.map((platform) => (
               <span
                 key={platform}
-                className="inline-flex items-center font-mono rounded border border-white/[0.05] bg-white/[0.02] px-2 py-0.5 text-[10px] tracking-wide text-muted-foreground"
+                className="inline-flex items-center font-mono rounded-sm border border-[#4a3a1e]/40 bg-[#D9C9A3]/[0.03] px-2 py-0.5 text-[10px] tracking-wide text-[#D9C9A3]/70"
               >
                 {platform}
               </span>
