@@ -5,7 +5,7 @@ import { HeroSection } from "@/components/timeline/HeroSection";
 import { SearchLocator } from "@/components/timeline/SearchLocator";
 import { TimelineItem } from "@/components/timeline/TimelineItem";
 import { BackToTop } from "@/components/timeline/BackToTop";
-import { CategoryTabs, filterGroups } from "@/components/timeline/CategoryFilter";
+import { CategoryTabs, filterGroups, ImportanceTabs, ImportanceTier, importanceOptions } from "@/components/timeline/CategoryFilter";
 import { timelineData } from "@/lib/timeline-data";
 import { cn } from "@/lib/utils";
 
@@ -36,14 +36,8 @@ function Index() {
   const [spotlightId, setSpotlightId] = useState<string | null>(null);
   const [wave, setWave] = useState(0);
   const [lineProgress, setLineProgress] = useState(0);
-
-  const activeGroup = filterGroups.find((g) => g.key === filterKey) ?? filterGroups[0];
-
-  const filtered = useMemo(() => {
-    if (activeGroup.categories === "all") return timelineData;
-    const set = new Set(activeGroup.categories);
-    return timelineData.filter((entry) => set.has(entry.universe_category));
-  }, [activeGroup]);
+  const [selectedTier, setSelectedTier] = useState<typeof importanceOptions[number]>("all");
+  const activeGroup = filterGroups.find((g) => g.key === filterKey) ?? filterGroups[0]
 
   const handleFilter = (key: string) => {
     if (key === filterKey) return;
@@ -63,30 +57,50 @@ function Index() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+ const filtered = useMemo(() => {
+  let items = timelineData;
+  if (activeGroup.categories !== "all") {
+    const set = new Set(activeGroup.categories);
+    items = items.filter((entry) => set.has(entry.universe_category));
+  }
+  if (selectedTier !== "all") {
+    items = items.filter((entry) => entry.importance_tier === selectedTier);
+  }
+  return items;
+}, [activeGroup, selectedTier]);
+
+  // In the sticky controls area, render the tabs
+
+
   return (
     <div className="dark min-h-screen bg-background text-foreground">
       <HeroSection />
 
       <main className="relative mx-auto max-w-6xl px-4 pb-24">
         <div className="sticky top-4 z-40 space-y-4 rounded-2xl border border-border/40 bg-background/70 px-2 py-4 backdrop-blur-xl shadow-lg">
-          <SearchLocator data={timelineData} onSpotlight={setSpotlightId} />
-          <div className="px-4">
-            <CategoryTabs activeKey={filterKey} onSelect={handleFilter} />
+          <div className="sticky top-4 z-40 space-y-4 rounded-2xl border border-border/40 bg-background/70 px-2 py-4 backdrop-blur-xl shadow-lg">
+            <SearchLocator data={timelineData} onSpotlight={setSpotlightId} />
+            <div className="px-4">
+              <CategoryTabs activeKey={filterKey} onSelect={handleFilter} />
+            </div>
+            <div className="px-4">
+              <ImportanceTabs selected={selectedTier} onSelect={setSelectedTier} />
+            </div>
           </div>
+
+          <section className="relative mt-8 space-y-12" aria-label="Marvel watch timeline">
+            <div
+              className="timeline-line absolute left-8 top-0 w-0.5 bg-tva md:left-1/2 md:-translate-x-1/2"
+              style={{ height: "100%", transform: `scaleY(${lineProgress})` }}
+            />
+
+            <div key={wave} className={cn("relative space-y-12 timeline-wave", spotlightId && "timeline-dimmed")}>
+              {filtered.map((entry, index) => (
+                <TimelineItem key={entry.id} entry={entry} index={index} spotlightId={spotlightId} />
+              ))}
+            </div>
+          </section>
         </div>
-
-        <section className="relative mt-8 space-y-12" aria-label="Marvel watch timeline">
-          <div
-            className="timeline-line absolute left-8 top-0 w-0.5 bg-tva md:left-1/2 md:-translate-x-1/2"
-            style={{ height: "100%", transform: `scaleY(${lineProgress})` }}
-          />
-
-          <div key={wave} className={cn("relative space-y-12 timeline-wave", spotlightId && "timeline-dimmed")}>
-            {filtered.map((entry, index) => (
-              <TimelineItem key={entry.id} entry={entry} index={index} spotlightId={spotlightId} />
-            ))}
-          </div>
-        </section>
       </main>
 
       <BackToTop />

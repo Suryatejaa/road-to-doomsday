@@ -8,6 +8,7 @@ export interface TimelineEntry {
   id: string;
   categoryToken: string;
   categoryLabel: string;
+
 }
 
 export const categoryMeta: Record<string, { token: string; label: string }> = {
@@ -54,7 +55,8 @@ export const categoryMeta: Record<string, { token: string; label: string }> = {
   "Alternative Multi-Universe": {
     "token": "multiverse",
     "label": "Multi-Universe"
-  }
+  },
+ 
 };
 
 export const timelineData: TimelineEntry[] = [

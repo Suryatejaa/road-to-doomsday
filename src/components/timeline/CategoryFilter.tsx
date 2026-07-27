@@ -34,8 +34,11 @@ export const filterGroups: FilterGroup[] = [
     label: "Sony Animation (Miles Morales)",
     token: "sony",
     categories: ["Sony Animation Canon", "Alternative Multi-Universe"],
-  },
+  }
+  
 ];
+
+
 
 interface CategoryTabsProps {
   activeKey: string;
@@ -69,6 +72,59 @@ export function CategoryTabs({ activeKey, onSelect }: CategoryTabsProps) {
           >
             <span className={cn("size-2 rounded-full", colors.bg)} aria-hidden="true" />
             {group.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+export const importanceOptions = ["all", "Mandatory", "Highly Recommended", "Optional"] as const;
+export type ImportanceOption = (typeof importanceOptions)[number];
+
+interface ImportanceTabsProps {
+  selected: ImportanceOption;
+  onSelect: (v: ImportanceOption) => void;
+}
+
+export interface ImportanceTierProps {
+  tier: string | number;
+}
+
+export function ImportanceTier({ tier }: ImportanceTierProps) {
+  const colors = categoryColorClasses["mandatory"];
+  return (
+    <div className="flex items-center gap-1">
+      <span className={cn("size-2 rounded-full", colors.bg)} aria-hidden="true" />
+      <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        {typeof tier === "string" ? tier : `Tier ${tier}`}
+      </span>
+    </div>
+  );
+}
+
+export function ImportanceTabs({ selected, onSelect }: ImportanceTabsProps) {
+  const colors = categoryColorClasses["mandatory"];
+  return (
+    <div className="flex gap-2" role="tablist" aria-label="Importance tiers">
+      {importanceOptions.map((opt) => {
+        const isActive = selected === opt;
+        const label = opt === "all" ? "All Tiers" : `Tier ${opt}`;
+        return (
+          <button
+            key={String(opt)}
+            type="button"
+            role="tab"
+            aria-selected={isActive}
+            onClick={() => onSelect(opt)}
+            className={cn(
+              "rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider transition",
+              isActive ? "bg-card border-[var(--glow-color)] text-foreground" : "bg-card/70 text-muted-foreground",
+            )}
+            style={{ ["--glow-color" as string]: `var(--cat-mandatory)` }}
+          >
+            <span className={cn("size-2 rounded-full inline-block mr-2", colors.bg)} aria-hidden="true" />
+            {label}
           </button>
         );
       })}

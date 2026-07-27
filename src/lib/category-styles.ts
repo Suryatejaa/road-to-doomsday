@@ -9,6 +9,7 @@ export const categoryTokenList = [
   "animation",
   "frontline",
   "tva",
+  "mandatory"
 ] as const;
 
 export type CategoryToken = (typeof categoryTokenList)[number];
@@ -87,4 +88,11 @@ export const categoryColorClasses: Record<
     border: "border-tva",
     ring: "ring-tva",
   },
+  mandatory: {
+    text: "text-cat-mandatory",
+    bg: "bg-cat-mandatory",
+    bgSubtle: "bg-cat-mandatory/10",
+    border: "border-cat-mandatory",
+    ring: "ring-cat-mandatory",
+  }
 };
