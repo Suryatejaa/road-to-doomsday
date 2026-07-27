@@ -303,6 +303,17 @@
   }
 }
 
+@keyframes tvaAlert {
+  0%, 100% {
+    box-shadow: 0 0 0px rgba(239, 68, 68, 0);
+    border-color: rgba(239, 68, 68, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
+    border-color: #ef4444;
+  }
+}
+
 @keyframes float {
   0%, 100% {
     transform: translateY(0);

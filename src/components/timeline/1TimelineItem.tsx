@@ -35,7 +35,7 @@ export function TimelineItem({ entry, index, spotlightId }: TimelineItemProps) {
           observer.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -10px 0px" }
+      { threshold: 0.10, rootMargin: "0px 0px -10px 0px" },
     );
     observer.observe(itemRef.current);
     return () => observer.disconnect();
@@ -49,60 +49,46 @@ export function TimelineItem({ entry, index, spotlightId }: TimelineItemProps) {
         visible && "opacity-100 translate-y-0"
       )}
     >
-      {/* The Sacred Timeline Thread — an analog gauge, not a wire */}
-      <div className="absolute left-3 top-0 bottom-0 w-[2px] bg-[#4a3a1e]/40">
-        {/* Ticked hash marks, like a clockwork gauge reel */}
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(to bottom, rgba(217,201,163,0.5) 0px, rgba(217,201,163,0.5) 1px, transparent 1px, transparent 10px)",
-            width: "3px",
-            left: "-0.5px",
-          }}
-        />
-        {/* Active Core — amber for the Sacred Timeline, burning orange where it's been pruned */}
-        <span
+      {/* The Central TVA Track System */}
+      <div className="absolute left-3 top-0 bottom-0 w-[2px] bg-emerald-950/40">
+        {/* Active Animated Time-line Core */}
+        <span 
           className={cn(
             "absolute top-0 bottom-0 left-0 w-full origin-top scale-y-0 transition-transform duration-1000 ease-out",
-            isFractured ? "bg-[#E85D2C] shadow-[0_0_10px_#E85D2C]" : "bg-[#F2A93B] shadow-[0_0_8px_#F2A93B]",
+            isFractured ? "bg-red-500 shadow-[0_0_10px_#ef4444]" : "bg-emerald-500 shadow-[0_0_8px_#10b981]",
             visible && "scale-y-100"
           )}
         />
       </div>
 
-      {/* Timeline Node — a TemPad tick mark, burnt to a stub where a branch was pruned */}
+      {/* Timeline Node Ring / Glitch Anchor */}
       <div className="absolute left-1.5 top-7 z-20 flex h-5 w-5 items-center justify-center">
         <span
           className={cn(
             "absolute h-4 w-4 rounded-full animate-ping opacity-0 transition-opacity duration-500",
-            isFractured ? "bg-[#E85D2C]/30" : "bg-[#F2A93B]/25",
+            isFractured ? "bg-red-500/30" : "bg-emerald-500/20",
             visible && "opacity-100"
           )}
         />
         <span
           className={cn(
-            "h-2.5 w-2.5 border bg-[#0c0906] transition-all duration-500 scale-0",
-            isFractured
-              ? "border-[#E85D2C] shadow-[0_0_8px_#E85D2C] rotate-45"
-              : "border-[#F2A93B] shadow-[0_0_8px_#F2A93B] rotate-45",
-            visible && "scale-100"
+            "h-2.5 w-2.5 rounded-full border bg-background transition-all duration-500 scale-0",
+            isFractured ? "border-red-500 shadow-[0_0_8px_#ef4444]" : "border-emerald-500 shadow-[0_0_8px_#10b981]",
+            visible && "scale-100 rotate-45"
           )}
         />
-
-        {/* Case-file spur connector to the card */}
+        
+        {/* Scarred Horizontal Spur Connector */}
         <span
           className={cn(
             "absolute left-full h-[1px] w-4 md:w-8 origin-left scale-x-0 transition-transform duration-500 delay-300",
-            isFractured
-              ? "bg-gradient-to-r from-[#E85D2C] to-transparent"
-              : "bg-gradient-to-r from-[#F2A93B] to-transparent",
+            isFractured ? "bg-gradient-to-r from-red-500 to-transparent" : "bg-gradient-to-r from-emerald-500 to-transparent",
             visible && "scale-x-100"
           )}
         />
       </div>
 
-      {/* Case File Card */}
+      {/* Movie Information Stream Card */}
       <div className="flex-1 w-full pb-8">
         <TimelineCard entry={entry} isVisible={visible} isSpotlight={isSpotlight} isFractured={isFractured} />
       </div>

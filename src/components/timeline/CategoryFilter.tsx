@@ -79,7 +79,7 @@ export function CategoryTabs({ activeKey, onSelect }: CategoryTabsProps) {
   );
 }
 
-export const importanceOptions = ["all", "Mandatory", "Highly Recommended", "Optional"] as const;
+export const importanceOptions = ["all", "Mandatory", "Hi-Recmd", "Optnl"] as const;
 export type ImportanceOption = (typeof importanceOptions)[number];
 
 interface ImportanceTabsProps {
@@ -96,12 +96,14 @@ export function ImportanceTier({ tier }: ImportanceTierProps) {
   return (
     <div className="flex items-center gap-1">
       <span className={cn("size-2 rounded-full", colors.bg)} aria-hidden="true" />
-      <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+      {/* FIXED: Changed text-aling-centerm to text-center */}
+      <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground text-center">
         {typeof tier === "string" ? tier : `Tier ${tier}`}
       </span>
     </div>
   );
 }
+
 
 export function ImportanceTabs({ selected, onSelect }: ImportanceTabsProps) {
   const colors = categoryColorClasses["mandatory"];
@@ -109,7 +111,7 @@ export function ImportanceTabs({ selected, onSelect }: ImportanceTabsProps) {
     <div className="flex gap-2" role="tablist" aria-label="Importance tiers">
       {importanceOptions.map((opt) => {
         const isActive = selected === opt;
-        const label = opt === "all" ? "All Tiers" : `Tier ${opt}`;
+        const label = opt === "all" ? "All" : `${opt}`;
         return (
           <button
             key={String(opt)}
@@ -117,13 +119,15 @@ export function ImportanceTabs({ selected, onSelect }: ImportanceTabsProps) {
             role="tab"
             aria-selected={isActive}
             onClick={() => onSelect(opt)}
+            /* FIXED: Replaced text-align-center with flex items-center justify-center */
             className={cn(
-              "rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider transition",
+              "flex items-center justify-center rounded-full px-1 py-1 text-xs font-semibold uppercase tracking-wider transition",
               isActive ? "bg-card border-[var(--glow-color)] text-foreground" : "bg-card/70 text-muted-foreground",
             )}
             style={{ ["--glow-color" as string]: `var(--cat-mandatory)` }}
           >
-            <span className={cn("size-2 rounded-full inline-block mr-2", colors.bg)} aria-hidden="true" />
+            {/* FIXED: Removed inline-block and mr-2 since the parent button flex container handles spacing via gap */}
+            <span className={cn("size-2 rounded-full mr-2", colors.bg)} aria-hidden="true" />
             {label}
           </button>
         );

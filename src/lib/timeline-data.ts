@@ -3,7 +3,7 @@ export interface TimelineEntry {
   title: string;
   setting_period: string;
   universe_category: string;
-  importance_tier: "Mandatory" | "Highly Recommended" | "Optional";
+  importance_tier: "Mandatory" | "Hi-Recomnd" | "Optional";
   streaming_platforms: string[];
   id: string;
   categoryToken: string;
@@ -78,7 +78,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "X-Men: First Class",
     "setting_period": "1962",
     "universe_category": "Fox Mutant Legacy",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+"
     ],
@@ -156,7 +156,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Captain Marvel",
     "setting_period": "1995",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -169,7 +169,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "X-Men",
     "setting_period": "2000",
     "universe_category": "Fox Mutant Legacy",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+"
     ],
@@ -182,7 +182,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "X2: X-Men United",
     "setting_period": "2003",
     "universe_category": "Fox Mutant Legacy",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+"
     ],
@@ -195,7 +195,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Fantastic Four",
     "setting_period": "2005",
     "universe_category": "Fox Legacy Foundation",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -208,7 +208,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "X-Men: The Last Stand",
     "setting_period": "2006",
     "universe_category": "Fox Mutant Legacy",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+"
     ],
@@ -221,7 +221,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Fantastic Four: Rise of the Silver Surfer",
     "setting_period": "2007",
     "universe_category": "Fox Legacy Foundation",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -247,7 +247,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "The Incredible Hulk",
     "setting_period": "2011",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -260,7 +260,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Iron Man 2",
     "setting_period": "2011",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -325,7 +325,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Thor: The Dark World",
     "setting_period": "2013",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -364,7 +364,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Guardians of the Galaxy Vol. 2",
     "setting_period": "2014",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -403,7 +403,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Ant-Man",
     "setting_period": "2015",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -416,7 +416,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Jessica Jones (Season 1)",
     "setting_period": "2015",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -442,7 +442,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Luke Cage (Season 1)",
     "setting_period": "2016",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -638,7 +638,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "The Punisher (Season 2)",
     "setting_period": "2018",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -664,7 +664,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Ant-Man and the Wasp",
     "setting_period": "2018",
     "universe_category": "MCU Sacred Timeline",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -756,7 +756,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "What If...? (Seasons 1-3)",
     "setting_period": "Alternate Reality Breakouts",
     "universe_category": "MCU Animation Canon",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -769,7 +769,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Spider-Man: Far From Home",
     "setting_period": "2024",
     "universe_category": "MCU New Avengers Build",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Netflix",
       "SonyLiv"
@@ -849,7 +849,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Moon Knight",
     "setting_period": "2025",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -862,7 +862,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Echo",
     "setting_period": "2025",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -888,7 +888,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Black Panther: Wakanda Forever",
     "setting_period": "2025",
     "universe_category": "MCU New Avengers Build",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -901,7 +901,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Ant-Man and the Wasp: Quantumania",
     "setting_period": "2026",
     "universe_category": "MCU Multiverse Nexus",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -914,7 +914,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Guardians of the Galaxy Vol. 3",
     "setting_period": "2026",
     "universe_category": "MCU Cosmic Lore",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -927,7 +927,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "The Marvels",
     "setting_period": "2026",
     "universe_category": "MCU Cosmic Lore",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -954,7 +954,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "X-Men '97 (Season 1)",
     "setting_period": "1997 (Alternate Astral Reality)",
     "universe_category": "MCU Mutant Animation",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],
@@ -967,7 +967,7 @@ export const timelineData: TimelineEntry[] = [
     "title": "Wonder Man",
     "setting_period": "2026",
     "universe_category": "Street Level Ecosystem",
-    "importance_tier": "Highly Recommended",
+    "importance_tier": "Hi-Recomnd",
     "streaming_platforms": [
       "Disney+ Hotstar"
     ],

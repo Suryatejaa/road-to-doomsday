@@ -1,20 +1,12 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-// Adjust this path to wherever Galaxy.jsx actually lives in your project
-// (reactbits convention is usually src/blocks/Backgrounds/Galaxy/Galaxy.jsx)
-//Could not find a declaration file for module '@/components/Galaxy'. '/Volumes/D-Drive/Projects/chronicle-compass/src/components/Galaxy.jsx' implicitly has an 'any' type.
-
-import Galaxy from "@/components/Galaxy";
-import FaultyTerminal from "@/components/FaultyTerminal";
 
 const TIMELINE_LOGS = [
   { label: "SYS_LOG // SPIDER_MAN // 616_NEXUS", color: "text-red-500 text-shadow-[0_0_8px_rgba(239,68,68,0.5)]" },
   { label: "SYS_LOG // DAREDEVIL // KITCHEN_STREET", color: "text-red-700 text-shadow-[0_0_8px_rgba(185,28,28,0.5)]" },
   { label: "SYS_LOG // WOLVERINE // FOX_ANCHOR", color: "text-amber-500 text-shadow-[0_0_8px_rgba(245,158,11,0.5)]" },
   { label: "SYS_LOG // REY_MORALES // SPIDER_VERSE", color: "text-fuchsia-500 text-shadow-[0_0_8px_rgba(217,70,239,0.5)]" },
-  { label: "SYS_LOG // VARIANT_DOOM // MULTIVERSE_CRISIS", color: "text-[#F2A93B] text-shadow-[0_0_8px_rgba(242,169,59,0.5)]" },
+  { label: "SYS_LOG // VARIANT_DOOM // MULTIVERSE_CRISIS", color: "text-emerald-400 text-shadow-[0_0_8px_rgba(52,211,153,0.5)]" },
 ];
 
 export function HeroSection() {
@@ -39,59 +31,19 @@ export function HeroSection() {
 
   return (
     <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-black px-4 font-mono select-none">
-      {/* Sacred Timeline starfield — every star is a pruned or unpruned branch */}
-      {/* <div className="absolute inset-0 z-0">
-        <Galaxy
-          hueShift={35}
-          density={0.6}
-          glowIntensity={0.25}
-          saturation={0.4}
-          twinkleIntensity={0.4}
-          speed={0.3}
-          starSpeed={0.4}
-          rotationSpeed={0.02}
-          mouseRepulsion
-          repulsionStrength={1.5}
-          transparent
-        />
-      </div> */}
-      <div className="absolute inset-0 z-0">
-        <FaultyTerminal
-          scale={1.5}
-          gridMul={[2, 1]}
-          digitSize={1.2}
-          timeScale={0.5}
-          pause={false}
-          scanlineIntensity={0.5}
-          glitchAmount={1}
-          flickerAmount={1}
-          noiseAmp={1}
-          chromaticAberration={0}
-          dither={0}
-          curvature={0.1}
-          tint="#A7EF9E"
-          mouseReact
-          mouseStrength={0.5}
-          pageLoadAnimation
-          brightness={0.6}
-        />
-      </div>
+      {/* Background TVA Grid & CRT Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.4)_50%)] bg-[size:100%_4px] pointer-events-none z-20" />
+      <div className="absolute inset-0 bg-radial-gradient from-transparent via-black/40 to-black pointer-events-none z-10" />
+      
+      {/* Animated Matrix/TVA Scan Grid background line */}
+      <div className="absolute inset-0 opacity-15 pointer-events-none bg-[linear-gradient(to_right,#022c22_1px,transparent_1px),linear-gradient(to_bottom,#022c22_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
-      {/* Amber terminal grid, laid over the starfield */}
-      <div className="absolute inset-0 z-10 opacity-15 pointer-events-none bg-[linear-gradient(to_right,#2a1c08_1px,transparent_1px),linear-gradient(to_bottom,#2a1c08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-
-      {/* Edge vignette to keep focus on the center console */}
-      <div className="absolute inset-0 z-10 bg-radial-gradient from-transparent via-black/40 to-black pointer-events-none" />
-
-      {/* CRT scanline overlay */}
-      <div className="absolute inset-0 z-20 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.4)_50%)] bg-[size:100%_4px] pointer-events-none" />
-
-      <div className="relative z-30 flex w-full max-w-5xl flex-col items-center text-center">
+      <div className="relative z-10 flex w-full max-w-5xl flex-col items-center text-center">
         {/* Upper System Monitor Diagnostics Banner */}
-        <div className="mb-6 flex items-center gap-3 border border-[#4a3a1e]/60 bg-[#241c0c]/20 px-4 py-1.5 rounded-full text-[10px] tracking-[0.2em] text-[#F2A93B] uppercase">
+        <div className="mb-6 flex items-center gap-3 border border-emerald-950/60 bg-emerald-950/10 px-4 py-1.5 rounded-full text-[10px] tracking-[0.2em] text-emerald-500 uppercase">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F2A93B] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F2A93B]"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
           TVA_LOCATOR_TERMINAL // CHRONO_MONITOR
         </div>
@@ -114,7 +66,7 @@ export function HeroSection() {
 
         {/* Massive Main Cinematic Title with CSS text glow */}
         <div className="relative mt-2">
-          <h1
+          <h1 
             className={cn(
               "text-5xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-500 sm:text-7xl md:text-8xl lg:text-9xl scale-95 opacity-0 transition-all duration-1000 ease-out",
               isBooted && "scale-100 opacity-100"
@@ -123,21 +75,21 @@ export function HeroSection() {
           >
             MULTIVERSE
           </h1>
-          <h2
+          <h2 
             className={cn(
-              "text-3xl font-black uppercase tracking-[0.25em] text-[#F2A93B] sm:text-5xl md:text-6xl lg:text-7xl scale-105 opacity-0 transition-all duration-1000 delay-300 ease-out mt-[-10px]",
+              "text-3xl font-black uppercase tracking-[0.25em] text-emerald-500 sm:text-5xl md:text-6xl lg:text-7xl scale-105 opacity-0 transition-all duration-1000 delay-300 ease-out mt-[-10px]",
               isBooted && "scale-100 opacity-100"
             )}
-            style={{ textShadow: "0 0 15px rgba(242,169,59,0.4)" }}
+            style={{ textShadow: "0 0 15px rgba(16,185,129,0.4)" }}
           >
             CHRONOLOGY
           </h2>
         </div>
 
         {/* Detailed Secondary Text Line */}
-        <p
+        <p 
           className={cn(
-            "mt-8 max-w-2xl text-xs leading-relaxed text-neutral-500 tracking-wide uppercase opacity-0 translate-y-4 transition-all duration-700 delay-700 text-white",
+            "mt-8 max-w-2xl text-xs leading-relaxed text-neutral-500 tracking-wide uppercase opacity-0 translate-y-4 transition-all duration-700 delay-700",
             isBooted && "opacity-100 translate-y-0"
           )}
         >
@@ -145,7 +97,7 @@ export function HeroSection() {
         </p>
 
         {/* Dynamic Diagnostic Metrics Footer */}
-        <div
+        <div 
           className={cn(
             "mt-12 grid grid-cols-3 gap-8 border-t border-neutral-900 pt-6 w-full max-w-lg opacity-0 transition-all duration-700 delay-1000",
             isBooted && "opacity-100"
@@ -153,15 +105,15 @@ export function HeroSection() {
         >
           <div>
             <div className="text-xl font-bold text-white tracking-tight">80</div>
-            <div className="text-[9px] uppercase tracking-wider text-white mt-0.5">Tracked Nodes</div>
+            <div className="text-[9px] uppercase tracking-wider text-neutral-600 mt-0.5">Tracked Nodes</div>
           </div>
           <div>
-            <div className="text-xl font-bold text-[#F2A93B] tracking-tight animate-pulse">E-616</div>
-            <div className="text-[9px] uppercase tracking-wider text-white mt-0.5">Anchor Reality</div>
+            <div className="text-xl font-bold text-emerald-500 tracking-tight animate-pulse">E-616</div>
+            <div className="text-[9px] uppercase tracking-wider text-neutral-600 mt-0.5">Anchor Reality</div>
           </div>
           <div>
             <div className="text-xl font-bold text-red-500 tracking-tight">04</div>
-            <div className="text-[9px] uppercase tracking-wider text-white mt-0.5">Active Collapses</div>
+            <div className="text-[9px] uppercase tracking-wider text-neutral-600 mt-0.5">Active Collapses</div>
           </div>
         </div>
       </div>
