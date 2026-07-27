@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { Menu, X } from "lucide-react";
 
 import { HeroSection } from "@/components/timeline/HeroSection";
 import { SearchLocator } from "@/components/timeline/SearchLocator";
-import { CategoryFilter } from "@/components/timeline/CategoryFilter";
 import { TimelineItem } from "@/components/timeline/TimelineItem";
 import { BackToTop } from "@/components/timeline/BackToTop";
+import LineSidebar from "@/components/LineSidebar";
 import { timelineData } from "@/lib/timeline-data";
 import { cn } from "@/lib/utils";
 
