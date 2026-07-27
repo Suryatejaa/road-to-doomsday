@@ -1,39 +1,77 @@
-import { categoryColorClasses, type CategoryToken } from "@/lib/category-styles";
 import { cn } from "@/lib/utils";
+import { categoryColorClasses, type CategoryToken } from "@/lib/category-styles";
 
-interface CategoryFilterProps {
-  categories: { universe_category: string; token: string; label: string }[];
-  active: string;
-  onSelect: (category: string) => void;
+export interface FilterGroup {
+  key: string;
+  label: string;
+  token: CategoryToken;
+  categories: string[] | "all";
 }
 
-export function CategoryFilter({ categories, active, onSelect }: CategoryFilterProps) {
-  const all = { universe_category: "All", token: "tva", label: "Complete Timeline" };
-  const items = [all, ...categories];
+export const filterGroups: FilterGroup[] = [
+  { key: "all", label: "Complete Timeline", token: "tva", categories: "all" },
+  {
+    key: "mcu",
+    label: "MCU Sacred Timeline",
+    token: "mcu",
+    categories: [
+      "MCU Sacred Timeline",
+      "MCU Multiverse Nexus",
+      "MCU New Avengers Build",
+      "MCU Cosmic Lore",
+      "MCU Earth-616 Frontline",
+    ],
+  },
+  { key: "street", label: "Street Level Core", token: "street", categories: ["Street Level Ecosystem"] },
+  {
+    key: "fox",
+    label: "Fox Mutant Legacy",
+    token: "fox",
+    categories: ["Fox Mutant Legacy", "Fox Legacy Foundation", "MCU Mutant Animation"],
+  },
+  {
+    key: "sony",
+    label: "Sony Animation (Miles Morales)",
+    token: "sony",
+    categories: ["Sony Animation Canon", "Alternative Multi-Universe"],
+  },
+];
 
+interface CategoryTabsProps {
+  activeKey: string;
+  onSelect: (key: string) => void;
+}
+
+export function CategoryTabs({ activeKey, onSelect }: CategoryTabsProps) {
   return (
-    <div className="flex flex-wrap justify-center gap-2 px-4">
-      {items.map((item) => {
-        const isActive = active === item.universe_category;
-        const colors = categoryColorClasses[(item.token as CategoryToken) ?? "tva"];
+    <div
+      className="flex snap-x snap-mandatory gap-2 overflow-x-auto pb-1 pt-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      role="tablist"
+      aria-label="Universe filters"
+    >
+      {filterGroups.map((group) => {
+        const isActive = activeKey === group.key;
+        const colors = categoryColorClasses[group.token];
         return (
           <button
-            key={item.universe_category}
+            key={group.key}
+            role="tab"
+            aria-selected={isActive}
             type="button"
-            onClick={() => onSelect(item.universe_category)}
+            onClick={() => onSelect(group.key)}
             className={cn(
-              "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all",
-              "border-border bg-card text-card-foreground hover:bg-accent hover:text-accent-foreground",
-              isActive && "ring-2 ring-offset-2 ring-offset-background",
-              isActive && colors.ring,
+              "group relative snap-start shrink-0 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-200",
+              "border-border/70 bg-card/70 text-muted-foreground backdrop-blur",
+              "hover:text-foreground hover:border-[var(--glow-color)]",
+              isActive && "text-foreground border-[var(--glow-color)] bg-card",
             )}
+            style={{ ["--glow-color" as string]: `var(--cat-${group.token === "tva" ? "mcu" : group.token})`, boxShadow: isActive ? `0 0 18px color-mix(in oklab, var(--${group.token === "tva" ? "tva" : `cat-${group.token}`}) 55%, transparent)` : undefined }}
           >
-            <span className={cn("size-2.5 rounded-full", colors.bg)} aria-hidden="true" />
-            {item.label}
+            <span className={cn("size-2 rounded-full", colors.bg)} aria-hidden="true" />
+            {group.label}
           </button>
         );
       })}
     </div>
   );
 }
-

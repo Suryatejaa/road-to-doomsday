@@ -57,7 +57,7 @@ export function SearchLocator({ data, onSpotlight }: SearchLocatorProps) {
             setOpen(true);
           }}
           onFocus={() => query.trim() && setOpen(true)}
-          placeholder="Locate a movie or series on the timeline..."
+          placeholder="Locate timeline entry... (e.g., Daredevil, Infinity War)"
           className={cn(
             "h-12 w-full rounded-full border-2 bg-background/80 pl-12 pr-5 text-foreground shadow-lg backdrop-blur-md transition-all",
             "border-tva/30 placeholder:text-muted-foreground",
