@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { Menu, X } from "lucide-react";
 
 import { HeroSection } from "@/components/timeline/HeroSection";
 import { SearchLocator } from "@/components/timeline/SearchLocator";
-import { CategoryFilter } from "@/components/timeline/CategoryFilter";
 import { TimelineItem } from "@/components/timeline/TimelineItem";
 import { BackToTop } from "@/components/timeline/BackToTop";
+import LineSidebar from "@/components/LineSidebar";
 import { timelineData } from "@/lib/timeline-data";
 import { cn } from "@/lib/utils";
 
@@ -75,15 +76,80 @@ function Index() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const allCategories = useMemo(
+    () => [{ universe_category: "All", token: "tva", label: "Complete Timeline" }, ...categories],
+    [categories],
+  );
+  const activeCategoryIndex = allCategories.findIndex((c) => c.universe_category === filter);
+
   return (
     <div className="dark min-h-screen bg-background text-foreground">
       <HeroSection />
 
       <main className="relative mx-auto max-w-6xl px-4 pb-24">
         <div className="sticky top-4 z-40 space-y-4 rounded-2xl bg-background/60 py-6 backdrop-blur-md">
-          <SearchLocator data={timelineData} onSpotlight={setSpotlightId} />
-          <CategoryFilter categories={categories} active={filter} onSelect={handleFilter} />
+          <div className="flex items-center gap-3 px-4">
+            <button
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Open universe filters"
+              className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-card text-card-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+            >
+              <Menu className="size-5" />
+            </button>
+            <div className="flex-1">
+              <SearchLocator data={timelineData} onSpotlight={setSpotlightId} />
+            </div>
+          </div>
         </div>
+
+        {menuOpen && (
+          <>
+            <div
+              className="fixed inset-0 z-[60] bg-background/70 backdrop-blur-sm"
+              onClick={() => setMenuOpen(false)}
+              aria-hidden="true"
+            />
+            <aside
+              className="fixed left-0 top-0 z-[70] h-full w-[86%] max-w-sm overflow-y-auto border-r border-border bg-card/95 p-6 shadow-2xl"
+              role="dialog"
+              aria-label="Universe filters"
+            >
+              <div className="mb-6 flex items-center justify-between">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">TVA Archive</p>
+                  <h2 className="mt-1 text-lg font-semibold text-foreground">Filter Universes</h2>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setMenuOpen(false)}
+                  aria-label="Close filters"
+                  className="inline-flex size-9 items-center justify-center rounded-full border border-border text-foreground/70 hover:bg-accent"
+                >
+                  <X className="size-4" />
+                </button>
+              </div>
+              <LineSidebar
+                items={allCategories.map((c) => c.label)}
+                accentColor="oklch(0.82 0.22 75)"
+                textColor="oklch(0.75 0.02 260)"
+                markerColor="oklch(0.5 0.02 260)"
+                activeIndex={activeCategoryIndex >= 0 ? activeCategoryIndex : 0}
+                proximityRadius={140}
+                maxShift={18}
+                markerLength={40}
+                itemGap={22}
+                fontSize={1.05}
+                onItemClick={(index) => {
+                  handleFilter(allCategories[index].universe_category);
+                  setMenuOpen(false);
+                }}
+              />
+            </aside>
+          </>
+        )}
 
         <section className="relative mt-8 space-y-12" aria-label="Marvel watch timeline">
           <div
