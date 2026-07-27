@@ -323,6 +323,15 @@
   }
 }
 
+/* Add this inside your global styles or main theme block if injecting SVGs dynamically */
+@media (prefers-color-scheme: dark) {
+  link[rel="icon"] {
+    /* Applies a clean white inversion outline filter so the dark icon pops on dark tab panels */
+    filter: invert(1) brightness(2); 
+  }
+}
+
+
 .hero-frame {
   animation: hero-flash 1.5s ease-in-out forwards;
   backface-visibility: hidden;

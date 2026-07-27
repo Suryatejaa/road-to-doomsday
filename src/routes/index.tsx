@@ -76,11 +76,11 @@ function Index() {
     <div className="dark min-h-screen bg-background text-foreground">
       <HeroSection />
 
-      <main className="relative mx-auto max-w-6xl px-4 pb-24">
-        <div className="sticky top-4 z-40 space-y-4 rounded-2xl border border-border/40 bg-background/70 px-2 py-4 backdrop-blur-xl shadow-lg">
-          <div className="sticky top-4 z-40 space-y-4 rounded-2xl border border-border/40 bg-background/70 px-2 py-4 backdrop-blur-xl shadow-lg">
+      <main className="relative mx-auto max-w-6xl px-0 pb-24">
+        <div className="sticky top-4 z-40 space-y-4 rounded-2xl border border-border/40 bg-background/70 px-0 py-4 backdrop-blur-xl shadow-lg">
+          <div className="sticky top-4 z-40 space-y-4 rounded-2xl border border-border/40 bg-background/70 px-0 py-4 backdrop-blur-xl shadow-lg">
             <SearchLocator data={timelineData} onSpotlight={setSpotlightId} />
-            <div className="px-4">
+            <div className="px-2">
               <CategoryTabs activeKey={filterKey} onSelect={handleFilter} />
             </div>
             <div className="px-4">

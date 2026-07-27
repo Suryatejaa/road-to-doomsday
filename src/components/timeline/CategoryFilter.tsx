@@ -34,11 +34,39 @@ export const filterGroups: FilterGroup[] = [
     label: "Sony Animation (Miles Morales)",
     token: "sony",
     categories: ["Sony Animation Canon", "Alternative Multi-Universe"],
+  },
+  {
+    key: "cosmic",
+    label: "Cosmic Lore & Multiverse",
+    token: "cosmic",
+    categories: ["MCU Cosmic Lore", "Alternative Multi-Universe"],
+  },
+  {
+    key: "legacy",
+    label: "Legacy & Alternate Universes",
+    token: "legacy",
+    categories: ["Alternative Multi-Universe", "MCU Multiverse Nexus"],
+  },
+  {
+    key: "tva",
+    label: "TVA & Multiversal Oversight",
+    token: "tva",
+    categories: ["MCU Multiverse Nexus", "MCU Sacred Timeline"],
+  },
+  {
+    key: "frontline",
+    label: "Frontline & TVA Operations",
+    token: "frontline",
+    categories: ["MCU Earth-616 Frontline", "MCU Multiverse Nexus"],  
+  },
+  {
+    key:"animation",
+    label: "Animation Canon & Sub-Clusters",
+    token: "animation",
+    categories: ["MCU Mutant Animation", "Sony Animation Canon"],
   }
   
 ];
-
-
 
 interface CategoryTabsProps {
   activeKey: string;
@@ -106,12 +134,21 @@ export function ImportanceTier({ tier }: ImportanceTierProps) {
 
 
 export function ImportanceTabs({ selected, onSelect }: ImportanceTabsProps) {
-  const colors = categoryColorClasses["mandatory"];
   return (
-    <div className="flex gap-2" role="tablist" aria-label="Importance tiers">
+    <div className="flex flex-wrap gap-2" role="tablist" aria-label="Importance tiers">
       {importanceOptions.map((opt) => {
         const isActive = selected === opt;
         const label = opt === "all" ? "All" : `${opt}`;
+        
+        // FIX: Map your uppercase option strings to active tokens in categoryColorClasses
+        let token: CategoryToken = "mcu"; // Default fallback
+        
+        if (opt === "Mandatory") token = "street"; // e.g., mapping to your working red dot
+        if (opt === "Hi-Recmd") token = "mcu";    // e.g., mapping to your working yellow dot
+        if (opt === "Optnl") token = "fox";       // e.g., mapping to your working green dot
+
+        const colors = categoryColorClasses[token];
+
         return (
           <button
             key={String(opt)}
@@ -119,15 +156,24 @@ export function ImportanceTabs({ selected, onSelect }: ImportanceTabsProps) {
             role="tab"
             aria-selected={isActive}
             onClick={() => onSelect(opt)}
-            /* FIXED: Replaced text-align-center with flex items-center justify-center */
             className={cn(
-              "flex items-center justify-center rounded-full px-1 py-1 text-xs font-semibold uppercase tracking-wider transition",
-              isActive ? "bg-card border-[var(--glow-color)] text-foreground" : "bg-card/70 text-muted-foreground",
+              "flex items-center justify-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider transition",
+              isActive 
+                ? "bg-card border-[var(--glow-color)] text-foreground" 
+                : "bg-card/70 text-muted-foreground border border-transparent"
             )}
-            style={{ ["--glow-color" as string]: `var(--cat-mandatory)` }}
+            style={{ ["--glow-color" as string]: `var(--cat-${token})` }}
           >
-            {/* FIXED: Removed inline-block and mr-2 since the parent button flex container handles spacing via gap */}
-            <span className={cn("size-2 rounded-full mr-2", colors.bg)} aria-hidden="true" />
+            {/* Show a working dot for every item except the global "All" option */}
+            {opt !== "all" && (
+              <span 
+                className={cn(
+                  "size-2 rounded-full mr-1.5 block", 
+                  colors.bg // This now pulls valid classes like "bg-cat-street"
+                )} 
+                aria-hidden="true" 
+              />
+            )}
             {label}
           </button>
         );
@@ -135,3 +181,4 @@ export function ImportanceTabs({ selected, onSelect }: ImportanceTabsProps) {
     </div>
   );
 }
+

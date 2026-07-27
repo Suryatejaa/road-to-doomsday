@@ -40,23 +40,22 @@ export function HeroSection() {
   return (
     <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-black px-4 font-mono select-none">
       {/* Sacred Timeline starfield — every star is a pruned or unpruned branch */}
-      {/* <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0">
+        
         <Galaxy
           hueShift={35}
-          density={0.6}
-          glowIntensity={0.25}
-          saturation={0.4}
+          density={1}
+          glowIntensity={0.35}
+          saturation={0.7}
           twinkleIntensity={0.4}
-          speed={0.3}
-          starSpeed={0.4}
-          rotationSpeed={0.02}
+          speed={0.2}
+          starSpeed={0.9}
+          rotationSpeed={0.05}
           mouseRepulsion
           repulsionStrength={1.5}
           transparent
         />
-      </div> */}
-      <div className="absolute inset-0 z-0">
-        <FaultyTerminal
+        {/* <FaultyTerminal
           scale={1.5}
           gridMul={[2, 1]}
           digitSize={1.2}
@@ -74,7 +73,7 @@ export function HeroSection() {
           mouseStrength={0.5}
           pageLoadAnimation
           brightness={0.6}
-        />
+        /> */}
       </div>
 
       {/* Amber terminal grid, laid over the starfield */}
